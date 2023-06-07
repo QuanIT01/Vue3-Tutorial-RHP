@@ -1,5 +1,5 @@
 <template>
-  <div class="modal fade" @click="onCloseModal">
+  <div class="modal fade" @click.self="onCloseModal">
     <div class="modal-dialog">
       <div class="modal-content" :class="{ 'bg-purple': theme === 'contact' }">
         <div class="modal-header">
