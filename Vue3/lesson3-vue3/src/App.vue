@@ -4,10 +4,22 @@
 
   <h1 class="fade">Hello from vue cli</h1>
   <base-modal
+    v-if="isShowModal"
     title="this is new title from app component"
     content="this is content modal"
-    theme="sales"
-  />
+    theme="example"
+    @cancel="onToggleModal"
+  >
+    <template v-slot:header>
+      <h2>This is the header</h2>
+    </template>
+    <template v-slot:footer>
+      <button @click="onToggleModal">Cancel</button>
+    </template>
+    <label for="">Name</label>
+    <input type="password" />
+  </base-modal>
+  <button @click="onToggleModal">Toggle modal</button>
   <!-- <button @click="onChange">Change me</button> -->
 </template>
 
@@ -24,9 +36,14 @@ export default {
     BaseModal: ModalApp,
   },
   data() {
-    return {};
+    return {
+      isShowModal: false,
+    };
   },
   methods: {
+    onToggleModal() {
+      this.isShowModal = !this.isShowModal;
+    },
     // onChange() {
     //   console.log("running here...");
     //   console.log(this.$refs.hello);

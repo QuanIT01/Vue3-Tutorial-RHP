@@ -1,14 +1,17 @@
 <template>
-  <div class="modal fade show">
+  <div class="modal fade" @click="onCloseModal">
     <div class="modal-dialog">
       <div class="modal-content" :class="{ 'bg-purple': theme === 'contact' }">
         <div class="modal-header">
-          <h2>{{ title }}</h2>
+          <slot name="header"></slot>
         </div>
         <div class="modal-body">
-          <p>{{ content }}</p>
+          <!-- <p>{{ content }}</p> -->
+          <slot />
         </div>
-        <div class="modal-footer"></div>
+        <div class="modal-footer">
+          <slot name="footer"></slot>
+        </div>
       </div>
     </div>
   </div>
@@ -35,6 +38,13 @@ export default {
   },
   data() {
     return {};
+  },
+  methods: {
+    //gửi sự kiện từ con sang cha
+    onCloseModal() {
+      console.log("running here");
+      this.$emit("cancel");
+    },
   },
 };
 </script>
