@@ -1,14 +1,43 @@
 <template>
   <div class="modal fade show">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">Modal title</div>
-        <div class="modal-body">Woohoo</div>
+      <div class="modal-content" :class="{ 'bg-purple': theme === 'contact' }">
+        <div class="modal-header">
+          <h2>{{ title }}</h2>
+        </div>
+        <div class="modal-body">
+          <p>{{ content }}</p>
+        </div>
         <div class="modal-footer"></div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+    content: {
+      type: String,
+      default: "",
+    },
+    theme: {
+      type: String,
+      default: "example",
+      validator(value) {
+        return ["example", "sales", "contact"].includes(value);
+      },
+    },
+  },
+  data() {
+    return {};
+  },
+};
+</script>
 
 <style scoped lang="css">
 .modal {
@@ -53,6 +82,10 @@
   border-radius: 0.3rem;
   outline: 0;
 }
+.modal-content.bg-purple {
+  background-color: purple;
+}
+
 .modal-header {
   display: flex;
   flex-shrink: 0;

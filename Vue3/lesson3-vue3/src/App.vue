@@ -3,7 +3,11 @@
   <header-app ref="header"></header-app> -->
 
   <h1 class="fade">Hello from vue cli</h1>
-  <base-modal />
+  <base-modal
+    title="this is new title from app component"
+    content="this is content modal"
+    theme="sales"
+  />
   <!-- <button @click="onChange">Change me</button> -->
 </template>
 
